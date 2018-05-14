@@ -1,9 +1,16 @@
 # Created by Jekyll Writer
-title: Kpali's Blog
-email: kpali@qq.com
-description: 我所说的都是错的
+title: Your awesome title
+author: Jekyll Writer
+description: >
+  This theme is disigned based on Mailbox Blog, and licensed under MIT. This
+  theme is also default theme for new site created by Jekyll Writer.
 baseurl: /blog
-url: ''
 permalink: '/:year/:month/:day/:title/'
-github_username: kpali
+paginate: 6
+paginate_path: '/page/:num/'
+twitter_username: jekyllwriter
+github_username: jekyllwriter
+gems:
+  - jekyll-paginate
 markdown: kramdown
+url: ''
