@@ -1,10 +1,9 @@
 # Created by Jekyll Writer
-title: Your awesome title
-email: your-email@domain.com
-description: Write an awesome description for your new site here
+title: Kpali's Blog
+email: kpali@qq.com
+description: 我所说的都是错的
 baseurl: /blog
 url: ''
 permalink: '/:year/:month/:day/:title/'
-twitter_username: jekyllwriter
-github_username: jekyllwriter
+github_username: kpali
 markdown: kramdown
