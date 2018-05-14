@@ -8,7 +8,7 @@ url: "https://kpali.github.io/blog" # the base hostname & protocol for your site
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
-filter: 'category'
+filter: 'tag'
 
 
 # Social account
