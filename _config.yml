@@ -1,12 +1,10 @@
 # Created by Jekyll Writer
-title: Kpali's Blogs
-author: Kpali
-description: 我所说的都是错的
-permalink: '/:year/:month/:day/:title/'
-paginate: 6
-paginate_path: '/page/:num/'
-github_username: kpali
-gems:
-  - jekyll-paginate
-markdown: kramdown
+title: Your awesome title
+email: your-email@domain.com
+description: Write an awesome description for your new site here
 baseurl: /blog
+url: ''
+permalink: '/:year/:month/:day/:title/'
+twitter_username: jekyllwriter
+github_username: jekyllwriter
+markdown: kramdown
