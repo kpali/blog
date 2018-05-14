@@ -1,13 +1,36 @@
-# Created by Jekyll Writer
+# Site settings
 title: Kpali's Blog
-author: Kpali
-description: 我所说的都是错的
-baseurl: /blog
-permalink: '/:year/:month/:day/:title/'
-paginate: 6
-paginate_path: '/page/:num/'
-github_username: kpali
-gems:
-  - jekyll-paginate
+email: kpali@qq.com
+description: > # this means to ignore newlines until "baseurl:"
+  我所说的都是错的
+baseurl: "/blog/" # the subpath of your site, e.g. /blog/
+url: "https://github.com/kpali" # the base hostname & protocol for your site
+
+
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'tag'
+
+
+# Social account
+# twitter:  username
+# weibo:    ID
+github:   kpali
+# codepen:  username
+# dribbble: username
+
+
+# Comment
+# disqus_shortname: discussion_shortname
+
+
+# Google Analytics
+# google_analytics: tracking_ID
+
+
+# Build settings
 markdown: kramdown
-url: ''
+sass:
+  style: compressed
+gems:
+  - jekyll-sitemap
