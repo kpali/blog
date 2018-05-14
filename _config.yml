@@ -3,12 +3,12 @@ title: Kpali's Blog
 email: kpali@qq.com
 description: 我所说的都是错的
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://kpali.github.io/blog" # the base hostname & protocol for your site
+url: "https://kpali.github.io" # the base hostname & protocol for your site
 
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
-filter: 'tag'
+filter: 'category'
 
 
 # Social account
