@@ -1,15 +1,12 @@
 # Created by Jekyll Writer
-title: Your awesome title
-author: Jekyll Writer
-description: >
-  This theme is disigned based on Mailbox Blog, and licensed under MIT. This
-  theme is also default theme for new site created by Jekyll Writer.
+title: Kpali's Blog
+author: Kpali
+description: 我所说的都是错的
 baseurl: /blog
 permalink: '/:year/:month/:day/:title/'
 paginate: 6
 paginate_path: '/page/:num/'
-twitter_username: jekyllwriter
-github_username: jekyllwriter
+github_username: kpali
 gems:
   - jekyll-paginate
 markdown: kramdown
