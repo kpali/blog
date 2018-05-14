@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-[Jekyll Writer](http://www.jekyllwriter.com) is a Jekyll blog site writer. You may download Jekyll Writer for Windows, OS X and Linux from our [official website](http://www.jekyllwriter.com).
+# 关于我
+
+我非常乐意跟梦想家在一起，他们行走四方，仰望苍穹，看着满天星辰说，“我想到那儿去”。但我是低头看路的那种人，我只想填好眼前这个坑，不让自己掉进去。 
