@@ -9,7 +9,7 @@ url: "https://github.com/kpali/blog" # the base hostname & protocol for your sit
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
-filter: 'tag'
+filter: 'category'
 
 
 # Social account
