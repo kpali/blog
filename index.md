@@ -1,5 +1,5 @@
 ---
-title: Kpali's Blog
+title: Kpali的博客
 layout: post
 ---
 
