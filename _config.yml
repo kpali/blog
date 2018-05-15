@@ -4,8 +4,11 @@ email: kpali@qq.com
 description: >
   我所说的都是错的
 baseurl: "/blog" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "https://kpali.github.io" # the base hostname & protocol for your site
 
+permalink: '/:year/:month/:day/:title/'
+paginate: 6
+paginate_path: '/page/:num/'
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
@@ -33,4 +36,4 @@ markdown: kramdown
 sass:
   style: compressed
 gems:
-  - jekyll-sitemap
+  - jekyll-paginate
