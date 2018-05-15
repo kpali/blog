@@ -1,16 +1,36 @@
-# Created by Jekyll Writer
-title: Your awesome title
-author: Jekyll Writer
+# Site settings
+title: Kpali's Blog
+email: kpali@qq.com
 description: >
-  This theme is disigned based on Mailbox Blog, and licensed under MIT. This
-  theme is also default theme for new site created by Jekyll Writer.
-baseurl: /blog
-permalink: '/:year/:month/:day/:title/'
-paginate: 6
-paginate_path: '/page/:num/'
-twitter_username: jekyllwriter
-github_username: jekyllwriter
-gems:
-  - jekyll-paginate
+  我所说的都是错的
+baseurl: "/blog" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
+
+
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'category'
+
+
+# Social account
+# twitter:  username
+# weibo:    ID
+github:   kpali
+# codepen:  username
+# dribbble: username
+
+
+# Comment
+# disqus_shortname: discussion_shortname
+
+
+# Google Analytics
+# google_analytics: tracking_ID
+
+
+# Build settings
 markdown: kramdown
-url: ''
+sass:
+  style: compressed
+gems:
+  - jekyll-sitemap
