@@ -1,60 +1,50 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
 title: Kpali's Blog
-brief-intro: 我所说的都是错的
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://kpali.github.io" # the base hostname & protocol for your site
-
-permalink: /:year/:month/:day/:title/
-
-# other links
-# twitter_username: username
-# facebook_username: username
-github_username:  kpali
 email: kpali@qq.com
-# weibo_username: username
-# zhihu_username: username
-# linkedIn_username: username
-dribbble_username:
+description: > # this means to ignore newlines until "baseurl:"
+  我所说的都是错的
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: https://kpali.github.io # the base hostname & protocol for your site
+rss_url: /pages/feed.xml
+author: Kpali
 
-description_footer: 我所说的都是错的
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'category'
+recent_num: 20
 
-# comments
-# two ways to comment, only choose one, and use your own short name
-# 两种评论插件，选一个就好了，使用自己的 short_name
-duoshuo_shortname: #short_name
-disqus_shortname: #short_name
+# Social account
+twitter: 
+weibo: 
+github: kpali
+instagram: 
+linkedin: 
 
-# statistic analysis 统计代码
-# 百度统计 id，将统计代码替换为自己的百度统计id，即
-# hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
-# xxxxx字符串
-# baidu_tongji_id: cf8506e0ef223e57ff6239944e5d46a4
-# google_analytics_id: UA-72449510-4 # google 分析追踪id
+# avatar and Favicon
+avatar: /assets/img/avatar.jpg # http://xxx.com/xxx.png
+favicon: # http://xxx.com/xxx.ico
+
+# disqus config
+disqus:
+  shortname: 
+
+# google analytics config
+ga:
+  id: 
+  url: 
 
 # Build settings
+permalink: /:year/:month/:day/:title.html
 markdown: kramdown
+highlighter: rouge
+mathjax: disabled
+sass:
+  style: compressed
 
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+# Jekyll Plugin
+# https://help.github.com/articles/adding-jekyll-plugins-to-a-github-pages-site/
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
 
-# port
-# port: 1234
-
-# url
-category_dir: category/
-tag_dir: tag/
-
-# excerpt
-excerpt_separator: "\n\n\n\n"
-
-# paginate
-gems: [jekyll-paginate]
-paginate: 6
