@@ -3,7 +3,7 @@ title: Kpali's Blog
 email: kpali@qq.com
 description: > # this means to ignore newlines until "baseurl:"
   我所说的都是错的
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/blog" # the subpath of your site, e.g. /blog/
 url: https://kpali.github.io # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
 author: Kpali
