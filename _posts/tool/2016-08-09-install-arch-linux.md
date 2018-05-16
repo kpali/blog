@@ -185,11 +185,13 @@ Command (m for help):
 # vi /etc/locale.gen
 ```
 
-`en_US.UTF-8 UTF-8`
+```
+en_US.UTF-8 UTF-8
 
-`zh_CN.UTF-8 UTF-8`
+zh_CN.UTF-8 UTF-8
 
-`zh_TW.UTF-8 UTF-8`
+zh_TW.UTF-8 UTF-8
+```
 
 接着执行locale-gen以生成locale讯息
 

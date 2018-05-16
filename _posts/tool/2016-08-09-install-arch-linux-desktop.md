@@ -116,11 +116,11 @@ exec gnome-session
 ### 安装字体
 
 ```
-\# pacman -S ttf-dejavu
+# pacman -S ttf-dejavu
 
-\# pacman -S wqy-zenhei
+# pacman -S wqy-zenhei
 
-\# pacman -S wqy-microhei
+# pacman -S wqy-microhei
 ```
 
 ### 安装VMware-tools（需重启）
