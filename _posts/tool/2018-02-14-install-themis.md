@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 安装与试用数据库审核工具Themis
+title: 数据库审核工具Themis的安装与试用
 category: 工具
 tags: Themis
 ---
