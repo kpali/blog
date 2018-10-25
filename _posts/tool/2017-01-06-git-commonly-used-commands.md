@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Git常用命令
+description: "本文整理了一些常用的Git命令，用于平时遇到某些生疏操作的时候查阅。"
 category: 工具
 tags: Git
 ---
+
+本文整理了一些常用的Git命令，用于平时遇到某些生疏操作的时候查阅。
 
 ### 创建
 

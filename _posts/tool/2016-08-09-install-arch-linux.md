@@ -1,10 +1,16 @@
 ---
 layout: post
 title: 安装Arch Linux
-description: “用fdisk建立分区 创建一个48G的分区，和一个2G的swap分区。输入fdisk /dev/sda启动fdisk，fdisk基本命令如下： n：创建新分区 d：删除一个分区 p：预览分区表 a：设置启动分区 w：写入分区表 q：退出 启动fdisk # fdisk /dev/sda 创建分区表 Command (m for help):  输入o并按下Enter 创建第一个分区 Command (m for help):  输入n并按下Enter”
+description: “Arch Linux(或称Arch)是一种以轻量简洁为设计理念的Linux发行版。Arch Linux的哲学就是Keep It Simple, Stupid。遵循简洁、现代、实用、以用户为中心等核心原则。 同时Arch Linux还拥有相当之完善的Wiki文档，在安装和使用的过程中，大多数问题都能得到解决。”
 category: 工具
 tags: ArchLinux
 ---
+
+## Arch Linux
+
+Arch Linux(或称Arch)是一种以轻量简洁为设计理念的Linux发行版。Arch Linux的哲学就是Keep It Simple, Stupid。遵循简洁、现代、实用、以用户为中心等核心原则。
+
+同时Arch Linux还拥有相当之完善的Wiki文档，在安装和使用的过程中，大多数问题都能得到解决。
 
 ## 用fdisk建立分区
 

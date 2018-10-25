@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 使用rsync同步文件
+description: "rsync是Unix/Linux下同步文件的一个高效算法，它能同步更新两处计算机的文件与目录，并适当利用查找文件中的不同块以减少数据传输。关于rsync的核心算法，有兴趣的看下这篇文章"
 category: 工具
 tags: Rsync
 ---

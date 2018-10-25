@@ -1,13 +1,14 @@
 ---
 layout: post
 title: 在Windows下使用Git
+description: "git是当今最流行的版本控制系统，因为是诞生在Linux操作系统下，因此Linux对git天生有最好的支持，随着git的流行和普及，目前在Windows也能较为完美的使用。以下便是我使用git上的一些经验。"
 category: 工具
 tags: Git
 ---
 
 ## 关于Git
 
-git是当今最流行的版本控制系统，因为是诞生在Linux操作系统下，因此Linux对git天生有最好的支持，但好在各路大牛的努力下，目前在Windows也能较为完美的使用。以下便是我使用git上的一些经验。
+git是当今最流行的版本控制系统，因为是诞生在Linux操作系统下，因此Linux对git天生有最好的支持，随着git的流行和普及，目前在Windows也能较为完美的使用。以下便是我使用git上的一些经验。
 
 ## 客户端版本选择
 
@@ -54,7 +55,7 @@ git是当今最流行的版本控制系统，因为是诞生在Linux操作系统
 ## 在add文件时可能遇到的警告信息
 
 	warning: LF will be replaced by CRLF
-
+	
 	fatal: CRLF would be replaced by LF
 
 这是行结束符自动转换导致的，可以关闭自动转换功能来解决，关于行结束符的解释：[http://blog.csdn.net/feng88724/article/details/11600375](http://blog.csdn.net/feng88724/article/details/11600375)

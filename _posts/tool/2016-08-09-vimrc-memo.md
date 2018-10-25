@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Vim配置文件备忘
+description: "Vim配置文件备忘"
 category: 工具
 tags: Vim
 ---

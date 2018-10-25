@@ -1,9 +1,22 @@
 ---
 layout: post
 title: 用树莓派和移动硬盘搭建NAS服务器
+description: "树莓派（Raspberry Pi）最初是为学习计算机编程教育而设计的和信用卡差不多大的微型电脑，售价便宜，基本功能都具备，可以连接键盘、鼠标、网线、WiFi、显示器，音频等。支持Linux和Windows 10 IoT等操作系统。"
 category: 工具
 tags: RaspberryPi
 ---
+
+## 关于树莓派
+
+树莓派（Raspberry Pi）最初是为学习计算机编程教育而设计的和信用卡差不多大的微型电脑，售价便宜，基本功能都具备，可以连接键盘、鼠标、网线、WiFi、显示器，音频等。支持Linux和Windows 10 IoT等操作系统。
+
+## 树莓派能做什么
+
+基本上来说，大多数笔记本能做的，树莓派都能做，只是性能差一些。但是树莓派体积非常小和便携，所以通常可以DIY出很多好玩的东西。
+
+本文主要使用树莓派来搭建一个NAS服务器。
+
+## 搭建NAS服务器
 
 由于树莓派的USB接口不足以给移动硬盘供电，因此需要另外给移动硬盘提供电源。
 
@@ -54,7 +67,7 @@ Device     Boot      Start  End          Blocks       Id   System
 
 **1.安装autofs**
 ​	
-	# apt-get install autofs
+​	# apt-get install autofs
 
 编辑配置文件
 
@@ -82,11 +95,11 @@ Device     Boot      Start  End          Blocks       Id   System
 
 备份配置文件
 ​	
-	# cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+​	# cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 
 编辑配置文件
 ​	
-	# vi /etc/samba/smb.conf
+​	# vi /etc/samba/smb.conf
 
 查找#  security = user，去掉这一行前面的注释符号#
 
@@ -167,7 +180,7 @@ Device     Boot      Start  End          Blocks       Id   System
 
 查看minidlna状态
 ​	
-	# service minidlna stauts
+​	# service minidlna stauts
 
 修改配置或媒体资源更新时，需要强制刷新，以便minidlna对最新的媒体文件进行索引
 
