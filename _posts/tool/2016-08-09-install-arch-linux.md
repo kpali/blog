@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 安装Arch Linux
+description: “用fdisk建立分区 创建一个48G的分区，和一个2G的swap分区。输入fdisk /dev/sda启动fdisk，fdisk基本命令如下： n：创建新分区 d：删除一个分区 p：预览分区表 a：设置启动分区 w：写入分区表 q：退出 启动fdisk # fdisk /dev/sda 创建分区表 Command (m for help):  输入o并按下Enter 创建第一个分区 Command (m for help):  输入n并按下Enter”
 category: 工具
 tags: ArchLinux
 ---

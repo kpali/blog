@@ -53,7 +53,7 @@ Device     Boot      Start  End          Blocks       Id   System
 ### 解决树莓派重启后驱动器的挂载失效的问题，任选一个
 
 **1.安装autofs**
-	
+​	
 	# apt-get install autofs
 
 编辑配置文件
@@ -81,11 +81,11 @@ Device     Boot      Start  End          Blocks       Id   System
 	# apt-get install samba samba-common-bin
 
 备份配置文件
-	
+​	
 	# cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 
 编辑配置文件
-	
+​	
 	# vi /etc/samba/smb.conf
 
 查找#  security = user，去掉这一行前面的注释符号#
@@ -166,7 +166,7 @@ Device     Boot      Start  End          Blocks       Id   System
 	# service minidlna restart
 
 查看minidlna状态
-	
+​	
 	# service minidlna stauts
 
 修改配置或媒体资源更新时，需要强制刷新，以便minidlna对最新的媒体文件进行索引
