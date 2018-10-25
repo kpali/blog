@@ -7,13 +7,13 @@ tags: Vim
 ---
 
 ```
-"我的配置
-"""""""""其他"""""""""""
+"其他
 set nocompatible "不使用vi兼容模式
 set nobackup "设置不自动备份文件
 set history=1000 "设置记录历史的行数
 set autoread "文件在Vim之外修改过，自动重新读入
-""""""""""显示""""""""""
+
+"显示
 syntax on "设置语法高亮显示
 colorscheme desert "设置配色方案
 set number "显示行数
@@ -27,7 +27,8 @@ set matchtime=2 "短暂跳转到匹配括号的时间
 "set nowrap "当一行文字很长时取消换行
 set laststatus=2 "总是显示状态行
 set hls "检索时高亮显示匹配项
-""""""""""缩进""""""""""
+
+"缩进
 set tabstop=4 "设置制表符宽度为4
 set softtabstop=4 "设置软制表符宽度为4
 set shiftwidth=4 "设置缩进的空格数为4
