@@ -2,7 +2,7 @@
 layout: post
 title: 应用容器引擎Docker入门
 description: "Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源。 Docker可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化。"
-category: 工具
+category: 技术
 tags: Docker
 ---
 
