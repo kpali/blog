@@ -546,7 +546,7 @@ RUN echo 'Dockerfile test' > /testdir/testfile
 
 这个Dockerfile很简单，`FROM ubuntu`表示是以ubuntu镜像为基础进行定制
 
-> 如果不想以任何镜像为基础，可以使用`FROM scratch`，scratch是虚拟的概念，并不实际存在，表示一个空白的镜像。
+> 如果不想以任何镜像为基础，可以使用`FROM scratch`，scratch表示一个空白的镜像。
 
 `RUN`指令是用来执行命令，这里我们创建了一个 `/testdir`目录，并在该目录下创建了一个`/tmp/test`文件。
 
