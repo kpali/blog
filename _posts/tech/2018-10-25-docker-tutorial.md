@@ -559,7 +559,7 @@ RUN mkdir /testdir \
     && echo 'Dockerfile test' > /testdir/testfile
 ```
 
-然后就可以构建这个镜像了，在Dockerfile文件所在目录执行：
+然后就可以构建这个镜像了，在Dockerfile文件所在目录执行（请注意结尾有一个`.`，它的作用是将当前目录作为构建的上下文）：
 
 ``` shell
 $ sudo docker build -t myubuntu:v2 .
@@ -568,6 +568,60 @@ $ sudo docker build -t myubuntu:v2 .
 使用`docker images` 就可以看到这个新定制的镜像。
 
 除了`FROM`和`RUN`指令之外，docker还提供其他一些很有用的指令，比如`COPY`、`ADD`、`CMD`、`ENTRYPOINT`等等，这里暂不详细说明。
+
+### 创建一个基础镜像
+
+大多数情况下都可以在Docker Hub中找到我们需要的基础镜像，或者利用Dockerfile对基础镜像进行定制，但如果我们想创建一个全新的镜像，就需要费点功夫去打包一个Linux操作系统，具体如何打包取决于不同的Linux发行版，以Ubuntu举例，Ubuntu的打包比较简单。
+
+我们准备一个虚拟机，已安装了Ubuntu，在这个虚拟机里先安装`debootstrap`：
+
+``` shell
+$ sudo apt install debootstrap
+```
+
+> debootstrap是debian/ubuntu下的一个工具，用来构建一套基本的系统(根文件系统)。
+
+使用`debootstrap`构建一个基本的系统，命令格式大致如下：
+
+``` shell
+$ sudo debootstrap --arch=amd64 [版本代号] [下载目录] [指定软件源]
+```
+
+执行命令：
+
+``` shell
+$ sudo debootstrap --arch=amd64 bionic bionic http://mirrors.aliyun.com/ubuntu
+```
+
+执行后，`debootstrap`就会开始下载一个Ubuntu 18.04的基本系统到当前目录下的bionic目录，`bionic`是Ubuntu 18.04的版本代号。
+
+可以chroot到这个基本系统，做一些操作，安装一些软件包之类的：
+
+``` shell
+$ sudo chroot bionic /bin/bash
+```
+
+操作完成清理系统并退出
+
+``` shell
+# rm -Rf /tmp/* && apt clean
+```
+
+``` shell
+# exit
+```
+
+使用`tar`进行打包：
+
+``` shell
+$ sudo tar -cvf bionic.tar -C bionic .
+```
+
+最后使用`docker import`就可以导入成镜像：
+
+``` shell
+$ sudo cat bionic.tar | sudo docker import - [镜像名]
+```
 
 ## 参考文档
 
