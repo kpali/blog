@@ -614,7 +614,7 @@ $ sudo chroot bionic /bin/bash
 使用`tar`进行打包：
 
 ``` shell
-$ sudo tar -cvf bionic.tar -C bionic .
+$ sudo tar --numeric-owner -cvf bionic.tar -C bionic .
 ```
 
 最后使用`docker import`就可以导入成镜像：
