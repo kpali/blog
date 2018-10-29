@@ -237,10 +237,10 @@ $ sudo docker load < /tmp/ubuntu.tar
 
 ### 容器操作
 
-执行`docker run`命令可以指定从某个镜像创建一个容器，`-t` 选项表示创建虚拟终端，`-i`选项表示绑定标准输入，如果希望容器在后台运行，可以再加上`-d`选项：
+执行`docker run`命令可以指定从某个镜像创建一个容器，`-t` 选项表示创建虚拟终端，`-i`选项表示绑定标准输入，如果希望容器在后台运行，可以再加上`-d`选项，最后指定运行`/bin/bash`：
 
 ``` shell
-sudo docker run -it ubuntu
+sudo docker run -it ubuntu /bin/bash
 ```
 
 执行大概结果如下，自动进入Ubuntu容器：
@@ -264,13 +264,13 @@ $ sudo docker ps -a
 通过以上命令可以看到容器ID、容器所属镜像、状态、名称等信息。Docker默认会自动生成容器名称，当然也可以在创建时使用`--name`选项指定容器名称：
 
 ``` shell
-$ sudo docker run -it --name myubuntu ubuntu
+$ sudo docker run -it --name myubuntu ubuntu /bin/bash
 ```
 
 容器的主机名称也可以指定：
 
 ``` shell
-$ sudo docker run -it -h myhostname ubuntu
+$ sudo docker run -it -h myhostname ubuntu /bin/bash
 ```
 
 删除名称为`myubuntu`的容器：
