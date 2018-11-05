@@ -2,7 +2,7 @@
 title: Kpali的博客
 email: kpali@qq.com
 description: > # this means to ignore newlines until "baseurl:"
-  我所说的都是错的
+  被误会是表达者的宿命
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://kpali.github.io" # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
@@ -15,7 +15,7 @@ recent_num: 20
 
 # Social account
 twitter: 
-weibo: 
+weibo: kpali
 github: kpali
 instagram: 
 linkedin: 
