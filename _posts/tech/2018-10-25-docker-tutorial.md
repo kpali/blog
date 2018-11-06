@@ -481,6 +481,12 @@ $ sudo docker run -itd --name ubuntu --mount source=my-vol2,target=/test ubuntu
 $ sudo docker run -itd --name ubuntu2 --mount type=bind,source=/tmp,target=/test ubuntu
 ```
 
+以上命令也可以简写为：
+
+``` shell
+$ sudo docker run -itd --name ubuntu2 -v /tmp:/test ubuntu
+```
+
 ### 使用卷还是绑定挂载
 
 两者都可以实现容器数据的持久化和共享，但是绑定挂载有明显的缺陷：
