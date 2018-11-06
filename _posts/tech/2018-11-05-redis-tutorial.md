@@ -652,7 +652,7 @@ sentinel auth-pass mymaster password
 $ redis-server sentinel.conf --sentinel
 ```
 
-至此，如果关闭主服务器后，就会自动切换为从服务器提供服务。
+至此，如果主服务器发送故障后，就会自动切换为从服务器提供服务。
 
 ## 参考文档
 
@@ -662,3 +662,4 @@ $ redis-server sentinel.conf --sentinel
 
 [https://www.cnblogs.com/zuidongfeng/p/8032505.html](https://www.cnblogs.com/zuidongfeng/p/8032505.html)
 
+[http://redis.cn/documentation.html](http://redis.cn/documentation.html)
