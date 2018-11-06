@@ -644,7 +644,11 @@ sentinel monitor mymaster 172.17.0.3 6379 1
 sentinel auth-pass mymaster password
 ```
 
-其中第二行配置表示监控一个名为`mymaster`的主服务器，IP地址为`172.17.0.3`，端口号为`6379`，而将这个主服务器判断为失效至少需要1个Sentinel同意（本示例从简，只使用了一个Sentinel，所以设置成1，一般使用3个Sentinel至少需要2个同意，5个至少3个同意，以此类推）。第三行配置`password`是访问`172.17.0.3`的Redis密码。
+第二行配置表示监控一个名为`mymaster`的主服务器，IP地址为`172.17.0.3`，端口号为`6379`，而将这个主服务器判断为失效至少需要1个Sentinel同意（本示例从简，只使用了一个Sentinel，所以设置成1，一般使用3个Sentinel至少需要2个同意，5个至少3个同意，以此类推）。
+
+Sentinel会根据主服务器配置找到从服务器，因此只需要配置主服务器即可。
+
+第三行配置的`password`是访问`172.17.0.3`的Redis密码。
 
 启动sentinel服务：
 
@@ -652,7 +656,7 @@ sentinel auth-pass mymaster password
 $ redis-server sentinel.conf --sentinel
 ```
 
-至此，如果主服务器发送故障后，就会自动切换为从服务器提供服务。
+之后，如果主服务器发生故障，Sentinel就会监控到，并自动进行主从切换。
 
 ## 参考文档
 
