@@ -636,6 +636,18 @@ OK
 
 > Redis从5.0.0版本起，改用`replicaof`，但`salveof`仍向后兼容。
 
+查看主从复制状态：
+
+``` shell
+127.0.0.1:6379> info replication
+```
+
+断开复制：
+
+``` shell
+127.0.0.1:6379> slaveof no one
+```
+
 ## 主从自动切换（哨兵机制）
 
 Redis的Sentinel系统用于管理多个Redis服务器（instance），该系统执行以下三个任务：
