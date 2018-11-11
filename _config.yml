@@ -26,12 +26,12 @@ favicon: # http://xxx.com/xxx.ico
 
 # disqus config
 disqus:
-  shortname: 
+  shortname: kpali
 
 # google analytics config
 ga:
-  id: 
-  url: 
+  id: UA-129042642-1
+  url: kpali.me
 
 # Build settings
 permalink: /:year/:month/:day/:title.html
