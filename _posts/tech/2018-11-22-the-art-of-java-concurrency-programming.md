@@ -66,7 +66,7 @@ JMM通过控制主内存与每个线程的本地内存之间的交互，来为Ja
 
 JMM属于语言级的内存模型，它确保在不同的编译器和不同的处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。
 
-###happens-before（先行原则）
+### happens-before（先行原则）
 
 与程序员密切相关的happens-before规则如下。
 
@@ -277,7 +277,7 @@ ThreadPoolExecutor采取上述步骤的总体设计思路，是为了在执行ex
 
 ## Executor框架
 
-###ThreadPoolExecutor
+### ThreadPoolExecutor
 
 3种类型的ThreadPoolExecutor：
 
