@@ -8,6 +8,8 @@ tags: [ Java ]
 
 ## 并发编程
 
+### 如何减少上下文切换
+
 减少上下文切换的方法有无锁并发编程、CAS算法、使用最少线程和使用协程。
 
 - 无锁并发编程。多线程竞争锁时，会引起上下文切换，所以多线程处理数据时，可以用一
@@ -17,7 +19,7 @@ tags: [ Java ]
   样会造成大量线程都处于等待状态。
 - 协程：在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。
 
-
+### synchronized
 
 利用synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现
 为以下3种形式。
@@ -26,11 +28,11 @@ tags: [ Java ]
 - 对于静态同步方法，锁是当前类的Class对象。
 - 对于同步方法块，锁是Synchonized括号里配置的对象。
 
-
+### 锁的4种状态
 
 Java SE 1.6为了减少获得锁和释放锁带来的性能消耗，引入了“偏向锁”和“轻量级锁”，在Java SE 1.6中，锁一共有4种状态，级别从低到高依次是：无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态，这几个状态会随着竞争情况逐渐升级。锁可以升级但不能降级，意味着偏向锁升级成轻量级锁后不能降级成偏向锁。这种锁升级却不能降级的策略，目的是为了提高获得锁和释放锁的效率。
 
-
+### CAS的缺陷
 
 CAS虽然很高效地解决了原子操作，但是CAS仍然存在三大问题。
 
@@ -38,15 +40,17 @@ CAS虽然很高效地解决了原子操作，但是CAS仍然存在三大问题�
 - 循环时间长开销大
 - 只能保证一个共享变量的原子操作
 
-
+### JVM实现锁的方式
 
 除了偏向锁，JVM实现锁的方式都用了循环CAS。
 
 ## Java内存模型
 
+### JMM的作用
+
 JMM通过控制主内存与每个线程的本地内存之间的交互，来为Java程序员提供内存可见性保证。
 
-
+### 重排序
 
 在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分3种类
 型。
@@ -62,7 +66,7 @@ JMM通过控制主内存与每个线程的本地内存之间的交互，来为Ja
 
 JMM属于语言级的内存模型，它确保在不同的编译器和不同的处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。
 
-
+###happens-before（先行原则）
 
 与程序员密切相关的happens-before规则如下。
 
@@ -72,32 +76,26 @@ JMM属于语言级的内存模型，它确保在不同的编译器和不同的�
   读。
 - 传递性：如果A happens-before B，且B happens-before C，那么A happens-before C。
 
-
-
-as-if-serial语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器、runtime和处理器都必须遵守as-if-serial语义。
-
-
-
 在计算机中，软件技术和硬件技术有一个共同的目标：在不改变程序执行结果的前提下，
 尽可能提高并行度。编译器和处理器遵从这一目标，从happens-before的定义我们可以看出，
 JMM同样遵从这一目标。
 
+### as-if-serial
 
+as-if-serial语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器、runtime和处理器都必须遵守as-if-serial语义。
+
+### 64位数据类型不保证原子性
 
 JMM不保证对64位的long型和double型变量的写操作具有原子性。
 
-
-
 从JSR-133内存模型开始（即从JDK5开始），仅仅只允许把一个64位long/double型变量的写操作拆分为两个32位的写操作来执行，任意的读操作在JSR-133中都必须具有原子性（即任意读操作必须要在单个读事务中执行）。
 
-
+### volatile
 
 volatile变量自身具有下列特性。
 
 - 可见性。对一个volatile变量的读，总是能看到（任意线程）对这个volatile变量最后的写入。
 - 原子性：对任意单个volatile变量的读/写具有原子性，但类似于volatile++这种复合操作不具有原子性。
-
-
 
 volatile重排序规则：
 
@@ -105,7 +103,7 @@ volatile重排序规则：
 - 当第一个操作是volatile读时，不管第二个操作是什么，都不能重排序。这个规则确保volatile读之后的操作不会被编译器重排序到volatile读之前。
 - 当第一个操作是volatile写，第二个操作是volatile读时，不能重排序。
 
-
+### 公平锁和非公平锁
 
 公平锁和非公平锁的内存语义总结：
 
@@ -113,7 +111,7 @@ volatile重排序规则：
 - 公平锁获取时，首先会去读volatile变量。
 - 非公平锁获取时，首先会用CAS更新volatile变量，这个操作同时具有volatile读和volatile写的内存语义。
 
-
+### final域重排序
 
 final域重排序规则：
 
@@ -128,6 +126,8 @@ final域重排序规则：
 
 ## 线程
 
+### wait()、notify()和notifyAll
+
 调用wait()、notify()以及notifyAll()时需要注意的细节，如下：
 
 1. 使用wait()、notify()和notifyAll()时需要先对调用对象加锁。
@@ -136,17 +136,17 @@ final域重排序规则：
 4. notify()方法将等待队列中的一个等待线程从等待队列中移到同步队列中，而notifyAll()方法则是将等待队列中所有的线程全部移到同步队列，被移动的线程状态由WAITING变为BLOCKED。
 5. 从wait()方法返回的前提是获得了调用对象的锁。
 
-
+### 管道输入/输出
 
 管道输入/输出流和普通的文件输入/输出流或者网络输入/输出流不同之处在于，它主要用于线程之间的数据传输，而传输的媒介为内存。
 
 管道输入/输出流主要包括了如下4种具体实现：PipedOutputStream、PipedInputStream、PipedReader和PipedWriter，前两种面向字节，而后两种面向字符。
 
-
+### thread.join()
 
 如果一个线程A执行了thread.join()语句，其含义是：当前线程A等待thread线程终止之后才从thread.join()返回。线程Thread除了提供join()方法之外，还提供了join(long millis)和join(longmillis,int nanos)两个具备超时特性的方法。这两个超时方法表示，如果线程thread在给定的超时时间里没有终止，那么将会从该超时方法中返回。
 
-
+### ThreadLocal
 
 ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对象为值的存储结构。这个结构被附带在线程上，也就是说一个线程可以根据一个ThreadLocal对象查询到绑定在这个线程上的一个值。
 
@@ -154,9 +154,11 @@ ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对�
 
 ## Java中的锁
 
+### Lock接口
+
 在Lock接口出现之前，Java程序是靠synchronized关键字实现锁功能的，而Java SE 5之后，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字类似的同步功能，只是在使用时需要显式地获取和释放锁。虽然它缺少了（通过synchronized块或者方法所提供的）隐式获取释放锁的便捷性，但是却拥有了锁获取与释放的可操作性、可中断的获取锁以及超时获取锁等多种synchronized关键字所不具备的同步特性。
 
-
+### AQS
 
 队列同步器AbstractQueuedSynchronizer（以下简称同步器），是用来构建锁或者其他同步组件的基础框架，它使用了一个int成员变量表示同步状态，通过内置的FIFO队列来完成资源获取线程的排队工作，并发包的作者（Doug Lea）期望它能够成为实现大部分同步需求的基础。
 
@@ -165,11 +167,11 @@ ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对�
 - 锁是面向使用者的，它定义了使用者与锁交互的接口（比如可以允许两个线程并行访问），隐藏了实现细节；
 - 同步器面向的是锁的实现者，它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。锁和同步器很好地隔离了使用者和实现者所需关注的领域。
 
-
+### 重入锁
 
 重入锁ReentrantLock，顾名思义，就是支持重进入的锁，它表示该锁能够支持一个线程对资源的重复加锁。除此之外，该锁的还支持获取锁时的公平和非公平性选择。
 
-
+### 读写锁
 
 之前提到锁（如Mutex和ReentrantLock）基本都是排他锁，这些锁在同一时刻只允许一个线程进行访问，而读写锁在同一时刻可以允许多个读线程访问，但是在写线程访问时，所有的读线程和其他写线程均被阻塞。读写锁维护了一对锁，一个读锁和一个写锁，通过分离读锁和写锁，使得并发性相比一般的排他锁有了很大提升。
 
@@ -179,11 +181,11 @@ ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对�
 - 重进入：该锁支持重进入，以读写线程为例：读线程在获取了读锁之后，能够再次获取读锁。而写线程在获取了写锁之后能够再次获取写锁，同时也可以获取读锁。
 - 锁降级：遵循获取写锁、获取读锁再释放写锁的次序，写锁能够降级称为读锁。
 
-
+### LockSupport
 
 LockSupport定义了一组的公共静态方法，这些方法提供了最基本的线程阻塞和唤醒功能，而LockSupport也成为构建同步组件的基础工具。
 
-
+### Condition接口
 
 Object的监视器方法和Condition接口的对比：
 
@@ -201,6 +203,8 @@ Object的监视器方法和Condition接口的对比：
 
 ## Java并发容器和框架
 
+### ConcurrentHashMap
+
 在并发编程中使用HashMap可能导致程序死循环。是因为HashMap在并发执行put操作时会导致HashMap的Entry链表形成环形数据结构，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。
 
 HashTable容器使用synchronized来保证线程安全，但在线程竞争激烈的情况下HashTable的效率非常低下。
@@ -209,27 +213,27 @@ ConcurrentHashMap的锁分段技术可有效提升并发访问率，容器里有
 
 ## Java中的并发工具类
 
+### CoundDownLatch
+
 CountDownLatch允许一个或多个线程等待其他线程完成操作。
 
-
+### CyclicBarrier
 
 CyclicBarrier默认的构造方法是CyclicBarrier（int parties），其参数表示屏障拦截的线程数
 量，每个线程调用await方法告诉CyclicBarrier我已经到达了屏障，然后当前线程被阻塞。
-
-
 
 CyclicBarrier和CountDownLatch的区别：
 
 CountDownLatch的计数器只能使用一次，而CyclicBarrier的计数器可以使用reset()方法重置。所以CyclicBarrier能处理更为复杂的业务场景。例如，如果计算发生错误，可以重置计数器，并让线程重新执行一次。
 
-
+### Semaphore
 
 Semaphore（信号量）是用来控制同时访问特定资源的线程数量，它通过协调各个线程，以
 保证合理的使用公共资源。
 
 Semaphore可以用于做流量控制，特别是公用资源有限的应用场景，比如数据库连接。
 
-
+### Exchanger
 
 Exchanger（交换者）是一个用于线程间协作的工具类。Exchanger用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。这两个线程通过exchange方法交换数据，如果第一个线程先执行exchange()方法，它会一直等待第二个线程也执行exchange方法，当两个线程都到达同步点时，这两个线程就可以交换数据，将本线程生产出来的数据传递给对方。
 
@@ -237,11 +241,15 @@ Exchanger可以用于遗传算法，遗传算法里需要选出两个人作为�
 
 ## Java中的线程池
 
+### 线程池的主要流程
+
 当提交一个新任务到线程池时，线程池的处理流程如下。
 
 1. 线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作线程来执行任务。如果核心线程池里的线程都在执行任务，则进入下个流程。
 2. 线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这个工作队列里。如果工作队列满了，则进入下个流程。
 3. 线程池判断线程池的线程是否都处于工作状态。如果没有，则创建一个新的工作线程来执行任务。如果已经满了，则交给饱和策略来处理这个任务。
+
+### execute方法
 
 ThreadPoolExecutor执行execute方法分下面4种情况。
 
@@ -252,7 +260,7 @@ ThreadPoolExecutor执行execute方法分下面4种情况。
 
 ThreadPoolExecutor采取上述步骤的总体设计思路，是为了在执行execute()方法时，尽可能地避免获取全局锁（那将会是一个严重的可伸缩瓶颈）。在ThreadPoolExecutor完成预热之后（当前运行的线程数大于等于corePoolSize），几乎所有的execute()方法调用都是执行步骤2，而步骤2不需要获取全局锁。
 
-
+### 合理地配置线程池
 
 要想合理地配置线程池，就必须首先分析任务特性，可以从以下几个角度来分析。
 
@@ -267,7 +275,9 @@ ThreadPoolExecutor采取上述步骤的总体设计思路，是为了在执行ex
 
 建议使用有界队列。有界队列能增加系统的稳定性和预警能力（不至于撑满内存），可以根据需要设大一点儿，比如几千。
 
+## Executor框架
 
+###ThreadPoolExecutor
 
 3种类型的ThreadPoolExecutor：
 
@@ -275,17 +285,13 @@ ThreadPoolExecutor采取上述步骤的总体设计思路，是为了在执行ex
 - SingleThreadExecutor：使用单个worker线程的Executor。SingleThreadExecutor使用无界队列inkedBlockingQueue作为线程池的工作队列（队列的容量为Integer.MAX_VALUE）。
 - CachedThreadPool：会根据需要创建新线程的线程池。CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，但CachedThreadPool的maximumPool是无界的。
 
-
-
-ScheduledThreadPoolExecutor：
+### ScheduledThreadPoolExecutor
 
 ScheduledThreadPoolExecutor继承自ThreadPoolExecutor。它主要用来在给定的延迟之后运行任务，或者定期执行任务。ScheduledThreadPoolExecutor的功能与Timer类似，但ScheduledThreadPoolExecutor功能更强大、更灵活。Timer对应的是单个后台线程，而ScheduledThreadPoolExecutor可以在构造函数中指定多个对应的后台线程数。
 
 ScheduledThreadPoolExecutor使用DelayQueue，DelayQueue是一个无界队列，所以ThreadPoolExecutor的maximumPoolSize在ScheduledThreadPoolExecutor中没有什么意义（设置maximumPoolSize的大小没有什么效果）。
 
-
-
-FutureTask：
+### FutureTask
 
 Future接口和实现Future接口的FutureTask类，代表异步计算的结果。
 
