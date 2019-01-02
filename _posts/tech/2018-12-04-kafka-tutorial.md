@@ -152,7 +152,7 @@ $ tar -zxf kafka_2.12-2.1.0.tgz -C /opt
 $ mkdir /kafka-logs
 ```
 
-修改`server.properties`配置文件，找到并修改`broker.id`、`log.dirs`、`listeners`和`zookeeper.connect`，其他配置保持不变：
+修改`server.properties`配置文件，找到并修改`broker.id`、`log.dirs`、`listeners`和`zookeeper.connect`，其他配置保持不变：
 
 ```
 # 代理ID
