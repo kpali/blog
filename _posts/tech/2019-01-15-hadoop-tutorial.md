@@ -1,6 +1,6 @@
 ---
 layout: post
-titile: Hadoop简明教程
+title: Hadoop简明教程
 description: "关于Hadoop Apache Hadoop是一款支持数据密集型分布式应用程序并以Apache 2.0许可协议发布的开源软件框架。它支持在商品硬件构建的大型集群上运行的应用程序。Hadoop是根据谷歌公司发表的MapReduce和Google文件系统的论文自行实现而成。所有的Hadoop模块都有一个基本假设，即硬件故障是常见情况，应该由框架自动处理。"
 category: 技术
 tags: [ Hadoop, HDFS, YARN ]
@@ -26,11 +26,19 @@ MapReduce是一种编程模型，用于大规模数据集（大于1TB）的并�
 
 HDFS是一个分布式文件系统。因为HDFS具有高容错性的特点，所以它可以设计部署在低廉的硬件上。她可以通过提供高吞吐率来访问应用程序的程序，适合那些有着超大数据集的应用程序。HDFS放宽了对可移植操作系统接口（POSIX）的要求，这样可以实现以流的形式访问文件系统中的数据。HDFS原本是开源的Apache项目Nutch的基础结构，最后它却成为了Hadoop基础架构之一。
 
+HDFS通过三个重要的角色来进行文件系统的管理：NameNode、DataNode和Client。
+
+NameNode可以看做是分布式文件系统中的管理者，主要负责管理文件系统的命名空间、集群配置信息和存储块的复制等。NameNode会将文件系统的Metadata存储在内存中，这些信息主要包括文件信息、每一个文件对应的文件块的信息和每一个文件块在DataNode中的信息等。
+
+DataNode是文件存储的基本单元，它将文件块（Block）存储在本地文件系统中，保存了所有Block的Metadata，同时周期性地将所有存在的Block信息发送给NameNode。
+
 ### YARN
 
 Apache YARN（Yet Another Resource Negotiator）是Hadoop的集群资源管理系统。YARN被引入Hadoop 2，最初是为了改善MapReduce的实现，但它具有足够的通用性，同样可以支持其他的分布式计算模式。
 
 YARN提供请求和使用集群资源的API，但这些API很少直接用于用户代码。相反，用户代码中用的是分布式计算框架提供的更高层API，这些API建立在YARN之上且向用户隐藏了资源管理细节。一些分布式计算框架（MapReduce，Spark等等）作为YARN应用运行在集群计算层（YARN）和集群存储层（HDFS和HBase）上。还有一层应用如Pig、Hive和Crunch都是运行在MapReduce，Spark或Tez之上的处理框架，它们不和YARN直接打交道。
+
+YARN通过两类长期运行的守护进程提供自己的核心服务：管理集群上资源使用的资源管理器（Resource Manager）、运行在集群中所有节点上且能够启动和监控容器（Container）的节点管理器（Node Manager）。容器用于执行特定应用程序的进程，每个容器都有资源限制（内存、CPU等）。一个容器可以使一个Unix进程，也可以是一个Linux cgroup，取决于YARN的配置。
 
 ### Hive
 
@@ -123,7 +131,7 @@ $ scp ~/.ssh/authorized_keys hadoop-c:~/.ssh/
 $ tar -xvf hadoop-2.9.2.tar.gz
 ```
 
-使用`root`用户移动刚解压的hadoop-2.9.2`目录到`/opt`目录下：
+使用`root`用户移动刚解压的hadoop-2.9.2目录到`/opt`目录下：
 
 ```shell
 # mv hadoop-2.9.2 /opt/
@@ -323,7 +331,7 @@ $ jps | grep -v Jps
 
 ## 使用Hadoop
 
-可以访问Web页面http://hadoop-a:50070查看或管理HDFS，访问http://hadoop-a:8088查看或管理YARN。
+可以访问Web页面[http://hadoop-a:50070](http://hadoop-a:50070)查看或管理HDFS，访问[http://hadoop-a:8088](http://hadoop-a:8088)查看或管理YARN。
 
 ### Hello World
 
