@@ -371,10 +371,32 @@ Found 2 items
 -rw-r--r--   1 kpali supergroup         28 2019-01-23 10:22 /test/input/file02
 ```
 
-运行一个Hadoop自带的示例程序`wordcount`，这是一个统计单词的MapReduce程序，代码如下：
+新建一个Maven项目，名称为`hadoop-demo`，`pom.xml`引入以下依赖：
+
+``` xml
+<dependencies>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-common</artifactId>
+        <version>2.9.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-client</artifactId>
+        <version>2.9.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-mapreduce-client-core</artifactId>
+        <version>2.9.2</version>
+    </dependency>
+</dependencies>
+```
+
+新建一个类`WordCount`，这里我们直接使用Hadoop自带的示例程序`wordcount`，这是一个统计单词的MapReduce程序，代码如下：
 
 ``` java
-package org.apache.hadoop.examples;
+package com.example;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -399,6 +421,7 @@ public class WordCount {
     private final static IntWritable one = new IntWritable(1);
     private Text word = new Text();
     // 实现map函数
+    @Override
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
       // 提取单词，以键值对<单词,1次>写入context
@@ -415,6 +438,7 @@ public class WordCount {
        extends Reducer<Text,IntWritable,Text,IntWritable> {
     private IntWritable result = new IntWritable();
     // 实现reduce函数
+    @Override
     public void reduce(Text key, Iterable<IntWritable> values, 
                        Context context
                        ) throws IOException, InterruptedException {
@@ -458,83 +482,13 @@ public class WordCount {
 }
 ```
 
-执行这个`wordcount`程序，将结果输出到`/test/output`目录下：
+然后打包成jar包，上传到Hadoop服务器上，执行这个`wordcount`程序，将结果输出到`/test/output`目录下：
 
 ``` shell
-$ hadoop jar /opt/hadoop-2.9.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar
-wordcount /test/input /test/output
-19/01/23 10:32:25 INFO client.RMProxy: Connecting to ResourceManager at hadoop-test/192.168.232.164:8032
-19/01/23 10:32:26 INFO input.FileInputFormat: Total input files to process : 2
-19/01/23 10:32:27 INFO mapreduce.JobSubmitter: number of splits:2
-19/01/23 10:32:27 INFO Configuration.deprecation: yarn.resourcemanager.system-metrics-publisher.enabled is deprecated. Instead, use yarn.system-metrics-publisher.enabled
-19/01/23 10:32:28 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1548209185345_0001
-19/01/23 10:32:29 INFO impl.YarnClientImpl: Submitted application application_1548209185345_0001
-19/01/23 10:32:29 INFO mapreduce.Job: The url to track the job: http://hadoop-test:8088/proxy/application_1548209185345_0001/
-19/01/23 10:32:29 INFO mapreduce.Job: Running job: job_1548209185345_0001
-19/01/23 10:32:41 INFO mapreduce.Job: Job job_1548209185345_0001 running in uber mode : false
-19/01/23 10:32:41 INFO mapreduce.Job:  map 0% reduce 0%
-19/01/23 10:33:08 INFO mapreduce.Job:  map 100% reduce 0%
-19/01/23 10:33:24 INFO mapreduce.Job:  map 100% reduce 100%
-19/01/23 10:33:26 INFO mapreduce.Job: Job job_1548209185345_0001 completed successfully
-19/01/23 10:33:26 INFO mapreduce.Job: Counters: 49
-        File System Counters
-                FILE: Number of bytes read=79
-                FILE: Number of bytes written=595384
-                FILE: Number of read operations=0
-                FILE: Number of large read operations=0
-                FILE: Number of write operations=0
-                HDFS: Number of bytes read=262
-                HDFS: Number of bytes written=41
-                HDFS: Number of read operations=9
-                HDFS: Number of large read operations=0
-                HDFS: Number of write operations=2
-        Job Counters
-                Launched map tasks=2
-                Launched reduce tasks=1
-                Data-local map tasks=2
-                Total time spent by all maps in occupied slots (ms)=46680
-                Total time spent by all reduces in occupied slots (ms)=13499
-                Total time spent by all map tasks (ms)=46680
-                Total time spent by all reduce tasks (ms)=13499
-                Total vcore-milliseconds taken by all map tasks=46680
-                Total vcore-milliseconds taken by all reduce tasks=13499
-                Total megabyte-milliseconds taken by all map tasks=47800320
-                Total megabyte-milliseconds taken by all reduce tasks=13822976
-        Map-Reduce Framework
-                Map input records=2
-                Map output records=8
-                Map output bytes=82
-                Map output materialized bytes=85
-                Input split bytes=212
-                Combine input records=8
-                Combine output records=6
-                Reduce input groups=5
-                Reduce shuffle bytes=85
-                Reduce input records=6
-                Reduce output records=5
-                Spilled Records=12
-                Shuffled Maps =2
-                Failed Shuffles=0
-                Merged Map outputs=2
-                GC time elapsed (ms)=334
-                CPU time spent (ms)=2260
-                Physical memory (bytes) snapshot=532660224
-                Virtual memory (bytes) snapshot=6334607360
-                Total committed heap usage (bytes)=307437568
-        Shuffle Errors
-                BAD_ID=0
-                CONNECTION=0
-                IO_ERROR=0
-                WRONG_LENGTH=0
-                WRONG_MAP=0
-                WRONG_REDUCE=0
-        File Input Format Counters
-                Bytes Read=50
-        File Output Format Counters
-                Bytes Written=41
+$ hadoop jar hadoop-demo.jar com.example.WordCount /test/input /test/output
 ```
 
-也可以在YARN Web界面查看执行结果。
+等待执行结束，也可以在YARN Web界面查看执行结果。
 
 查看输出文件：
 
