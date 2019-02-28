@@ -2,7 +2,7 @@
 title: kpali的博客
 email: kpali@qq.com
 description: > # this means to ignore newlines until "baseurl:"
-  但行好事，莫问前程
+  望山明海
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: http://kpali.me # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
